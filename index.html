@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Pabean</title>
+    <h1> Selamat Datang di Website Kalkulator Pabean Bea Cukai Banda Aceh</h1><br>    
+</head>
+<body>
+    <label for="">FOB</label>
+        <input type="number" id="idFOB"><br>
+    <label for="">Kurs</label>
+        <input type="text" id="idKurs"><br>
+    <label for="">NPWP</label>
+        <select name="NPWPname" id="idNPWP" onchange="pilihNPWP()">
+            <option value="-">(Silahkan Isi)</option>
+            <option value="0.075">Ada</option>
+            <option value="0.15">Tidak Ada</option>
+        </select><br>
+    <button id="idbtnhitung">Hitung</button><br>
+    <label for="">Nilai Pabean</label>
+        <span id="idNilaiPabean"></span><br>
+    <label for="">Nilai Impor</label>
+        <span id="idNilaiImpor"></span><br>
+    <label for="">Bea Masuk</label>
+        <span id="idBeaMasuk"></span><br>
+    <label for="">PPN Impor</label>
+        <span id="idPPNImpor"></span><br>
+    <label for="">PPh Impor</label>
+        <span id="idPPhImpor"></span><br>
+    <label for="">Total Pungutan</label>
+        <span id="idTotalPungutan"></span><br><br>
+
+    <!-- Script Penghitungan -->
+    <script>
+        
+        // Variabel yang bisa dibaca oleh Script
+        const FOB= document.getElementById("idFOB");
+        const Kurs = document.getElementById("idKurs");
+        const NPWP = document.getElementById("idNPWP");
+        const TombolHitung = document.getElementById("idbtnhitung");
+        const NilaiImpor = document.getElementById("idNilaiImpor");
+        const BeaMasuk = document.getElementById("idBeaMasuk");
+        const PPNImpor = document.getElementById("idPPNImpor");
+        const PPhImpor = document.getElementById("idPPhImpor");
+        const TotalPungutan = document.getElementById("idTotalPungutan");
+
+        //Ambil Value NPWP
+        
+        function pilihNPWP() {
+            const ambilinidNPWP = document.getElementById("idNPWP")
+            const valueNPWP = ambilinidNPWP.value
+            console.log(valueNPWP);
+        }
+
+        // Pengoperasian Tombol Hitung
+        TombolHitung.addEventListener ("click", myfunction() {
+            const NP = eval(FOB.value * Kurs.value);
+            console.log(NP);
+            const BM = Math.round(eval(NP * 0.1))
+            console.log(BM);
+            const NI = Math.round(eval(BM + NP))
+            console.log(NI);
+            const PPN = Math.round(eval(NI * 0.11))
+            console.log(PPN);
+            const PPh = Math.round(eval(NI * valueNPWP))
+            console.log(PPh);
+
+         // Tampilan Tombol Hitung
+            
+            document.getElementById("idNilaiPabean").innerHTML = NP;
+            document.getElementById("idBeaMasuk").innerHTML = BM;
+            document.getElementById("idNilaiImpor").innerHTML = NI;
+            document.getElementById("idPPNImpor").innerHTML = PPN;
+            document.getElementById("idPPNImpor").innerHTML = PPh;
+        });
+
+    </script>
+
+       
+
+
+    
+    
+
+</body>
+</html> 
